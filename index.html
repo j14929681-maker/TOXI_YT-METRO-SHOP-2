@@ -30,17 +30,11 @@ background:#151a2e;
 padding:12px;
 border-radius:12px;
 border:1px solid #2a3555;
-animation:fadeIn .4s;
 transition:.2s;
 }
+
 .card:hover{
 transform:translateY(-5px) scale(1.03);
-box-shadow:0 0 10px rgba(255,123,0,0.4);
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1}
 }
 
 .price{color:#00ffb3;font-weight:bold}
@@ -53,10 +47,7 @@ border:none;
 border-radius:8px;
 color:white;
 width:100%;
-transition:.2s;
 }
-.btn:hover{transform:scale(1.05)}
-.btn:active{transform:scale(0.95)}
 
 .buy{background:#00ffb3;color:#000}
 
@@ -93,12 +84,6 @@ padding:20px;
 border-radius:12px;
 width:90%;
 max-width:400px;
-animation:zoom .3s;
-}
-
-@keyframes zoom{
-from{transform:scale(.8);opacity:0}
-to{transform:scale(1);opacity:1}
 }
 
 .input{
@@ -121,7 +106,6 @@ color:white;
 
 <input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()">
 
-<!-- ПАКЕТЫ -->
 <div class="section-title">📦 ПАКЕТЫ</div>
 <div class="grid">
 
@@ -139,7 +123,6 @@ color:white;
 
 </div>
 
-<!-- ПОПУЛЯРНОЕ -->
 <div class="section-title">🔥 ПОПУЛЯРНОЕ</div>
 <div class="grid">
 <div class="card"><h3>МК14</h3><div class="price">7 грн</div>
@@ -151,7 +134,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('Фулл 6',9)">Купить</button></div>
 </div>
 
-<!-- БРОНЯ -->
 <div class="section-title">🛡 БРОНЯ</div>
 <div class="grid">
 <div class="card"><h3>Шлем</h3><div class="price">5 грн</div>
@@ -167,7 +149,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('Фулл 6',9)">Купить</button></div>
 </div>
 
-<!-- РЮКЗАКИ -->
 <div class="section-title">🎒 РЮКЗАКИ</div>
 <div class="grid">
 <div class="card"><h3>Рюкзак 6</h3><div class="price">6 грн</div>
@@ -179,7 +160,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('Рюкзак 5',4)">Купить</button></div>
 </div>
 
-<!-- ОРУЖИЕ -->
 <div class="section-title">🔫 ОРУЖИЕ</div>
 <div class="grid">
 <div class="card"><h3>МК14 улучшенная</h3><div class="price">4 грн</div>
@@ -199,7 +179,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button></div>
 </div>
 
-<!-- ОБВЕСЫ -->
 <div class="section-title">⚙️ ОБВЕСЫ</div>
 <div class="grid">
 <div class="card"><h3>Обвесы</h3><div class="price">4 грн</div>
@@ -211,7 +190,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('Теплак',5)">Купить</button></div>
 </div>
 
-<!-- СНАРЯЖЕНИЕ -->
 <div class="section-title">🧱 СНАРЯЖЕНИЕ</div>
 <div class="grid">
 <div class="card"><h3>Ткань</h3><div class="price">5 грн</div>
@@ -223,7 +201,6 @@ color:white;
 <button class="btn buy" onclick="buyNow('Ресурсы',2.5)">Купить</button></div>
 </div>
 
-<!-- ПИСЬМА -->
 <div class="section-title">📜 ПИСЬМА</div>
 <div class="grid">
 <div class="card"><h3>Чёрное письмо</h3><div class="price">6 грн</div>
@@ -233,7 +210,6 @@ color:white;
 
 </div>
 
-<!-- КОРЗИНА -->
 <div class="cart">
 <div id="cart-items">🛒 Пусто</div>
 <div id="cart-total">0 грн</div>
@@ -241,7 +217,6 @@ color:white;
 <button class="btn" onclick="clearCart()">Очистить корзину</button>
 </div>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
 <div class="popup-box">
 <h3>Оформление заказа</h3>
@@ -256,9 +231,16 @@ let cart=[];
 let total=0;
 let quickItem=null;
 
-function add(n,p){cart.push(n+" - "+p+" грн");total+=p;render();}
-function buyNow(n,p){quickItem=n+" - "+p+" грн";openPopup();}
-function remove(i){cart.splice(i,1);recalc();}
+function add(n,p){
+cart.push(n+" - "+p+" грн");
+total+=p;
+render();
+}
+
+function buyNow(n,p){
+quickItem=n+" - "+p+" грн";
+openPopup();
+}
 
 function clearCart(){
 cart=[];
@@ -266,16 +248,10 @@ total=0;
 render();
 }
 
-function recalc(){
-total=0;
-cart.forEach(i=>total+=parseFloat(i.split(" - ")[1]));
-render();
-}
-
 function render(){
 let html="";
 cart.forEach((i,index)=>{
-html+=`• ${i} <span onclick="remove(${index})" style="color:red">✖</span><br>`;
+html+=`• ${i} <span onclick="cart.splice(${index},1);render()" style="color:red">✖</span><br>`;
 });
 document.getElementById("cart-items").innerHTML=html||"🛒 Пусто";
 document.getElementById("cart-total").innerText=total+" грн";
@@ -295,18 +271,24 @@ function sendOrder(){
 let nick=document.getElementById("nick").value;
 if(!nick){alert("Введите ник");return;}
 
-let text="🛒 Заказ%0A👤 Ник: "+nick+"%0A%0A";
+let text="🛒 Заказ\n👤 Ник: "+nick+"\n\n";
 
 if(quickItem){
 text+="• "+quickItem;
 quickItem=null;
 }else{
 if(cart.length==0){alert("Корзина пустая");return;}
-cart.forEach(i=>text+="• "+i+"%0A");
-text+="%0A💰 Итого: "+total+" грн";
+
+cart.forEach(i=>{
+text+="• "+i+"\n";
+});
+
+text+="\n💰 Итого: "+total+" грн";
 }
 
-window.open("https://t.me/TOXI_YT?text="+text);
+// ФИКС: Telegram не режет текст
+let url="https://t.me/TOXI_YT?text="+encodeURIComponent(text);
+window.open(url,"_blank");
 }
 </script>
 
