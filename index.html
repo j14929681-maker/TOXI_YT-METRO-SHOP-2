@@ -18,12 +18,19 @@ font-weight:bold;
 
 .container{padding:15px;max-width:1000px;margin:auto}
 
-/* категории */
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.tab{padding:8px 12px;background:#151a2e;border:none;border-radius:8px;color:#fff;cursor:pointer}
+/* КНОПКИ КАТЕГОРИЙ */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tab{
+padding:8px 12px;
+background:#151a2e;
+border:none;
+border-radius:8px;
+color:#fff;
+cursor:pointer;
+}
 .tab.active{background:#ff7b00}
 
-/* поиск */
+/* ПОИСК */
 .search{
 width:100%;
 padding:10px;
@@ -34,7 +41,13 @@ color:#fff;
 margin-top:10px;
 }
 
-/* товары */
+.section-title{
+margin-top:20px;
+border-left:4px solid #ffd000;
+padding-left:8px;
+}
+
+/* ТОВАРЫ */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -47,21 +60,9 @@ background:#151a2e;
 padding:12px;
 border-radius:12px;
 border:1px solid #2a3555;
-
-/* АНИМАЦИЯ */
-animation:fadeIn 0.4s ease;
 transition:0.2s;
 }
-
-.card:hover{
-transform:translateY(-5px) scale(1.03);
-box-shadow:0 0 15px rgba(255,123,0,0.4);
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;transform:translateY(0);}
-}
+.card:hover{transform:scale(1.03)}
 
 .price{color:#00ffb3;font-weight:bold}
 
@@ -74,15 +75,10 @@ border-radius:8px;
 color:white;
 width:100%;
 cursor:pointer;
-transition:0.2s;
 }
-
-.btn:hover{transform:scale(1.05);}
-.btn:active{transform:scale(0.95);}
-
 .buy{background:#00ffb3;color:#000}
 
-/* корзина */
+/* КОРЗИНА */
 .cart{
 position:fixed;
 bottom:0;
@@ -100,7 +96,7 @@ border:none;
 border-radius:8px;
 }
 
-/* popup */
+/* POPUP */
 .popup{
 position:fixed;
 top:0;left:0;
@@ -117,12 +113,6 @@ padding:20px;
 border-radius:12px;
 width:90%;
 max-width:400px;
-animation:zoom 0.3s;
-}
-
-@keyframes zoom{
-from{transform:scale(0.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
 }
 
 .input{
@@ -135,7 +125,7 @@ background:#0a0d16;
 color:#fff;
 }
 
-/* уведомление */
+/* УВЕДОМЛЕНИЕ */
 .toast{
 position:fixed;
 top:20px;
@@ -155,17 +145,20 @@ display:none;
 
 <div class="container">
 
+<!-- КАТЕГОРИИ -->
 <div class="tabs">
 <button class="tab active" onclick="filter('all')">Все</button>
 <button class="tab" onclick="filter('pack')">Пакеты</button>
 <button class="tab" onclick="filter('gun')">Оружие</button>
 <button class="tab" onclick="filter('armor')">Броня</button>
+<button class="tab" onclick="filter('other')">Другое</button>
 </div>
 
 <input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()">
 
-<div class="grid">
+<div class="grid" id="items">
 
+<!-- ПАКЕТЫ -->
 <div class="card pack">
 <h3>Бюджет пакет</h3><div class="price">8 грн</div>
 <button class="btn" onclick="add('Бюджет пакет',8)">В корзину</button>
@@ -178,27 +171,50 @@ display:none;
 <button class="btn buy" onclick="buyNow('VIP пакет',13)">Купить</button>
 </div>
 
+<!-- ОРУЖИЕ -->
 <div class="card gun">
 <h3>МК14 ВК</h3><div class="price">7 грн</div>
 <button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>
 <button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button>
 </div>
 
+<div class="card gun">
+<h3>МК14 КБ</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button>
+</div>
+
+<!-- БРОНЯ -->
 <div class="card armor">
 <h3>Шлем</h3><div class="price">5 грн</div>
 <button class="btn" onclick="add('Шлем',5)">В корзину</button>
 <button class="btn buy" onclick="buyNow('Шлем',5)">Купить</button>
 </div>
 
+<div class="card armor">
+<h3>Броник</h3><div class="price">5 грн</div>
+<button class="btn" onclick="add('Броник',5)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Броник',5)">Купить</button>
+</div>
+
+<!-- ДРУГОЕ -->
+<div class="card other">
+<h3>Теплак</h3><div class="price">5 грн</div>
+<button class="btn" onclick="add('Теплак',5)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Теплак',5)">Купить</button>
+</div>
+
 </div>
 </div>
 
+<!-- КОРЗИНА -->
 <div class="cart">
 <div id="cart-items">🛒 Пусто</div>
 <div id="cart-total">0 грн</div>
 <button class="order-btn" onclick="openPopup()">Оформить заказ</button>
 </div>
 
+<!-- POPUP -->
 <div class="popup" id="popup">
 <div class="popup-box">
 <h3>Оформление заказа</h3>
@@ -207,13 +223,15 @@ display:none;
 </div>
 </div>
 
-<div class="toast" id="toast">Добавлено</div>
+<!-- TOAST -->
+<div class="toast" id="toast">Добавлено в корзину</div>
 
 <script>
 let cart=[];
 let total=0;
 let quickItem=null;
 
+/* КОРЗИНА */
 function add(n,p){
 cart.push(n+" - "+p+" грн");
 total+=p;
@@ -226,6 +244,7 @@ quickItem=n+" - "+p+" грн";
 openPopup();
 }
 
+/* РЕНДЕР */
 function render(){
 let html="";
 cart.forEach(i=>html+="• "+i+"<br>");
@@ -233,6 +252,7 @@ document.getElementById("cart-items").innerHTML=html||"🛒 Пусто";
 document.getElementById("cart-total").innerText=total+" грн";
 }
 
+/* ПОИСК */
 function searchItems(){
 let v=document.getElementById("search").value.toLowerCase();
 document.querySelectorAll(".card").forEach(c=>{
@@ -240,17 +260,21 @@ c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
 });
 }
 
+/* ФИЛЬТР */
 function filter(type){
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+event.target.classList.add("active");
+
 document.querySelectorAll(".card").forEach(c=>{
 if(type==="all") c.style.display="block";
 else c.style.display=c.classList.contains(type)?"block":"none";
 });
 }
 
-function openPopup(){
-document.getElementById("popup").style.display="flex";
-}
+/* POPUP */
+function openPopup(){document.getElementById("popup").style.display="flex";}
 
+/* SEND */
 function sendOrder(){
 let nick=document.getElementById("nick").value;
 if(!nick){alert("Введите ник");return;}
@@ -269,6 +293,7 @@ text+="%0A💰 Итого: "+total+" грн";
 window.open("https://t.me/TOXI_YT?text="+text);
 }
 
+/* TOAST */
 function toast(t){
 let x=document.getElementById("toast");
 x.innerText=t;
