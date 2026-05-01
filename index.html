@@ -30,6 +30,17 @@ background:#151a2e;
 padding:12px;
 border-radius:12px;
 border:1px solid #2a3555;
+animation:fadeIn .4s;
+transition:.2s;
+}
+.card:hover{
+transform:translateY(-5px) scale(1.03);
+box-shadow:0 0 10px rgba(255,123,0,0.4);
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1}
 }
 
 .price{color:#00ffb3;font-weight:bold}
@@ -42,7 +53,10 @@ border:none;
 border-radius:8px;
 color:white;
 width:100%;
+transition:.2s;
 }
+.btn:hover{transform:scale(1.05)}
+.btn:active{transform:scale(0.95)}
 
 .buy{background:#00ffb3;color:#000}
 
@@ -53,8 +67,6 @@ width:100%;
 background:#12172a;
 padding:10px;
 }
-
-.remove{color:red;cursor:pointer}
 
 .order-btn{
 width:100%;
@@ -81,6 +93,12 @@ padding:20px;
 border-radius:12px;
 width:90%;
 max-width:400px;
+animation:zoom .3s;
+}
+
+@keyframes zoom{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
 .input{
@@ -220,6 +238,7 @@ color:white;
 <div id="cart-items">🛒 Пусто</div>
 <div id="cart-total">0 грн</div>
 <button class="order-btn" onclick="openPopup()">Оформить заказ</button>
+<button class="btn" onclick="clearCart()">Очистить корзину</button>
 </div>
 
 <!-- POPUP -->
@@ -240,6 +259,12 @@ let quickItem=null;
 function add(n,p){cart.push(n+" - "+p+" грн");total+=p;render();}
 function buyNow(n,p){quickItem=n+" - "+p+" грн";openPopup();}
 function remove(i){cart.splice(i,1);recalc();}
+
+function clearCart(){
+cart=[];
+total=0;
+render();
+}
 
 function recalc(){
 total=0;
