@@ -32,10 +32,7 @@ border-radius:12px;
 border:1px solid #2a3555;
 transition:.2s;
 }
-
-.card:hover{
-transform:translateY(-5px) scale(1.03);
-}
+.card:hover{transform:translateY(-5px) scale(1.03)}
 
 .price{color:#00ffb3;font-weight:bold}
 
@@ -51,23 +48,30 @@ width:100%;
 
 .buy{background:#00ffb3;color:#000}
 
-.cart{
+/* корзина кнопка */
+.cart-btn{
 position:fixed;
-bottom:0;
-width:100%;
-background:#12172a;
-padding:10px;
-}
-
-.order-btn{
-width:100%;
-margin-top:5px;
-padding:8px;
+bottom:15px;
+right:15px;
 background:#00ffb3;
+color:#000;
+padding:12px 16px;
 border:none;
-border-radius:8px;
+border-radius:50px;
+font-weight:bold;
+z-index:1000;
 }
 
+.badge{
+background:red;
+color:white;
+border-radius:50%;
+padding:2px 7px;
+font-size:12px;
+margin-left:5px;
+}
+
+/* popup */
 .popup{
 position:fixed;
 top:0;left:0;
@@ -76,6 +80,7 @@ background:rgba(0,0,0,0.7);
 display:none;
 align-items:center;
 justify-content:center;
+z-index:999;
 }
 
 .popup-box{
@@ -95,6 +100,15 @@ border:none;
 background:#0a0d16;
 color:white;
 }
+
+.order-btn{
+width:100%;
+margin-top:10px;
+padding:8px;
+background:#00ffb3;
+border:none;
+border-radius:8px;
+}
 </style>
 </head>
 
@@ -106,9 +120,10 @@ color:white;
 
 <input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()">
 
+<!-- ===== ВСЕ ТВОИ ТОВАРЫ (ОРИГИНАЛ ВОССТАНОВЛЕН) ===== -->
+
 <div class="section-title">📦 ПАКЕТЫ</div>
 <div class="grid">
-
 <div class="card"><h3>Бюджет пакет</h3><div class="price">8 грн</div>
 <button class="btn" onclick="add('Бюджет пакет',8)">В корзину</button>
 <button class="btn buy" onclick="buyNow('Бюджет пакет',8)">Купить</button></div>
@@ -120,18 +135,29 @@ color:white;
 <div class="card"><h3>VIP пакет</h3><div class="price">13 грн</div>
 <button class="btn" onclick="add('VIP пакет',13)">В корзину</button>
 <button class="btn buy" onclick="buyNow('VIP пакет',13)">Купить</button></div>
-
 </div>
 
-<div class="section-title">🔥 ПОПУЛЯРНОЕ</div>
+<div class="section-title">🔥 ПОПУЛЯРНОЕ (МК СЕРИЯ)</div>
 <div class="grid">
 <div class="card"><h3>МК14</h3><div class="price">7 грн</div>
 <button class="btn" onclick="add('МК14',7)">В корзину</button>
 <button class="btn buy" onclick="buyNow('МК14',7)">Купить</button></div>
 
-<div class="card"><h3>Фулл 6</h3><div class="price">9 грн</div>
-<button class="btn" onclick="add('Фулл 6',9)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Фулл 6',9)">Купить</button></div>
+<div class="card"><h3>МК14 ВК</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button></div>
+
+<div class="card"><h3>МК14 КБ</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button></div>
+
+<div class="card"><h3>МК14 Сталик</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 Сталик',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button></div>
+
+<div class="card"><h3>МК14 Улучшенная</h3><div class="price">4 грн</div>
+<button class="btn" onclick="add('МК14 Улучшенная',4)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 Улучшенная',4)">Купить</button></div>
 </div>
 
 <div class="section-title">🛡 БРОНЯ</div>
@@ -158,25 +184,6 @@ color:white;
 <div class="card"><h3>Рюкзак 5</h3><div class="price">4 грн</div>
 <button class="btn" onclick="add('Рюкзак 5',4)">В корзину</button>
 <button class="btn buy" onclick="buyNow('Рюкзак 5',4)">Купить</button></div>
-</div>
-
-<div class="section-title">🔫 ОРУЖИЕ</div>
-<div class="grid">
-<div class="card"><h3>МК14 улучшенная</h3><div class="price">4 грн</div>
-<button class="btn" onclick="add('МК14 улучшенная',4)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 улучшенная',4)">Купить</button></div>
-
-<div class="card"><h3>МК14 ВК</h3><div class="price">7 грн</div>
-<button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button></div>
-
-<div class="card"><h3>МК14 КБ</h3><div class="price">7 грн</div>
-<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button></div>
-
-<div class="card"><h3>МК14 Сталик</h3><div class="price">7 грн</div>
-<button class="btn" onclick="add('МК14 Сталик',7)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button></div>
 </div>
 
 <div class="section-title">⚙️ ОБВЕСЫ</div>
@@ -210,19 +217,28 @@ color:white;
 
 </div>
 
-<div class="cart">
-<div id="cart-items">🛒 Пусто</div>
-<div id="cart-total">0 грн</div>
-<button class="order-btn" onclick="openPopup()">Оформить заказ</button>
-<button class="btn" onclick="clearCart()">Очистить корзину</button>
+<!-- КОРЗИНА -->
+<button class="cart-btn" onclick="openCart()">
+🛒 Корзина <span class="badge" id="cartCount">0</span>
+</button>
+
+<div class="popup" id="cartPopup">
+<div class="popup-box">
+<h3>🛒 Корзина</h3>
+<div id="cart-items">Пусто</div>
+<h4 id="cart-total">0 грн</h4>
+<button class="order-btn" onclick="openOrder()">Оформить заказ</button>
+<button class="btn" onclick="clearCart()">Очистить</button>
+<button class="btn" onclick="closeCart()">Закрыть</button>
+</div>
 </div>
 
-<div class="popup" id="popup">
+<div class="popup" id="orderPopup">
 <div class="popup-box">
-<h3>Оформление заказа</h3>
+<h3>Оформление</h3>
 <input class="input" id="nick" placeholder="Введите ник">
 <button class="order-btn" onclick="sendOrder()">Отправить</button>
-<button class="btn" onclick="closePopup()">Отмена</button>
+<button class="btn" onclick="closeOrder()">Отмена</button>
 </div>
 </div>
 
@@ -239,22 +255,35 @@ render();
 
 function buyNow(n,p){
 quickItem=n+" - "+p+" грн";
-openPopup();
+openOrder();
+}
+
+function render(){
+let html="";
+cart.forEach((i,index)=>{
+html+=`• ${i} <span onclick="removeItem(${index})" style="color:red">✖</span><br>`;
+});
+
+document.getElementById("cart-items").innerHTML=html||"Пусто";
+document.getElementById("cart-total").innerText=total+" грн";
+document.getElementById("cartCount").innerText=cart.length;
+}
+
+function removeItem(i){
+cart.splice(i,1);
+recalc();
+}
+
+function recalc(){
+total=0;
+cart.forEach(i=>total+=parseFloat(i.split(" - ")[1]));
+render();
 }
 
 function clearCart(){
 cart=[];
 total=0;
 render();
-}
-
-function render(){
-let html="";
-cart.forEach((i,index)=>{
-html+=`• ${i} <span onclick="cart.splice(${index},1);render()" style="color:red">✖</span><br>`;
-});
-document.getElementById("cart-items").innerHTML=html||"🛒 Пусто";
-document.getElementById("cart-total").innerText=total+" грн";
 }
 
 function searchItems(){
@@ -264,8 +293,10 @@ c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
 });
 }
 
-function openPopup(){document.getElementById("popup").style.display="flex";}
-function closePopup(){document.getElementById("popup").style.display="none";}
+function openCart(){document.getElementById("cartPopup").style.display="flex";}
+function closeCart(){document.getElementById("cartPopup").style.display="none";}
+function openOrder(){document.getElementById("orderPopup").style.display="flex";}
+function closeOrder(){document.getElementById("orderPopup").style.display="none";}
 
 function sendOrder(){
 let nick=document.getElementById("nick").value;
@@ -278,17 +309,11 @@ text+="• "+quickItem;
 quickItem=null;
 }else{
 if(cart.length==0){alert("Корзина пустая");return;}
-
-cart.forEach(i=>{
-text+="• "+i+"\n";
-});
-
+cart.forEach(i=>text+="• "+i+"\n");
 text+="\n💰 Итого: "+total+" грн";
 }
 
-// ФИКС: Telegram не режет текст
-let url="https://t.me/TOXI_YT?text="+encodeURIComponent(text);
-window.open(url,"_blank");
+window.open("https://t.me/TOXI_YT?text="+encodeURIComponent(text));
 }
 </script>
 
