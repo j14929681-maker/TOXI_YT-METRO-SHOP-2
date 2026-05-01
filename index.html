@@ -3,34 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOXI METRO SHOP 6.0</title>
+<title>TOXI METRO SHOP 5.0 FULL</title>
 
 <style>
 body{margin:0;font-family:Arial;background:#0a0d16;color:#fff}
-
-header{
-background:linear-gradient(90deg,#ffd000,#ff7b00);
-padding:20px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-}
+header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align:center;font-size:24px;font-weight:bold}
 
 .container{padding:15px;max-width:1000px;margin:auto}
 
-/* КНОПКИ КАТЕГОРИЙ */
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.tab{
-padding:8px 12px;
-background:#151a2e;
-border:none;
-border-radius:8px;
-color:#fff;
-cursor:pointer;
-}
-.tab.active{background:#ff7b00}
-
-/* ПОИСК */
 .search{
 width:100%;
 padding:10px;
@@ -41,28 +21,16 @@ color:#fff;
 margin-top:10px;
 }
 
-.section-title{
-margin-top:20px;
-border-left:4px solid #ffd000;
-padding-left:8px;
-}
+.section-title{margin-top:20px;border-left:4px solid #ffd000;padding-left:8px}
 
-/* ТОВАРЫ */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
-margin-top:10px;
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
 
 .card{
 background:#151a2e;
 padding:12px;
 border-radius:12px;
 border:1px solid #2a3555;
-transition:0.2s;
 }
-.card:hover{transform:scale(1.03)}
 
 .price{color:#00ffb3;font-weight:bold}
 
@@ -74,11 +42,10 @@ border:none;
 border-radius:8px;
 color:white;
 width:100%;
-cursor:pointer;
 }
+
 .buy{background:#00ffb3;color:#000}
 
-/* КОРЗИНА */
 .cart{
 position:fixed;
 bottom:0;
@@ -86,6 +53,8 @@ width:100%;
 background:#12172a;
 padding:10px;
 }
+
+.remove{color:red;cursor:pointer}
 
 .order-btn{
 width:100%;
@@ -96,7 +65,6 @@ border:none;
 border-radius:8px;
 }
 
-/* POPUP */
 .popup{
 position:fixed;
 top:0;left:0;
@@ -122,89 +90,129 @@ margin-top:10px;
 border-radius:8px;
 border:none;
 background:#0a0d16;
-color:#fff;
-}
-
-/* УВЕДОМЛЕНИЕ */
-.toast{
-position:fixed;
-top:20px;
-right:20px;
-background:#00ffb3;
-color:#000;
-padding:10px;
-border-radius:8px;
-display:none;
+color:white;
 }
 </style>
 </head>
 
 <body>
 
-<header>🔥 TOXI METRO SHOP 6.0</header>
+<header>🔥 TOXI METRO SHOP 5.0 FULL</header>
 
 <div class="container">
 
-<!-- КАТЕГОРИИ -->
-<div class="tabs">
-<button class="tab active" onclick="filter('all')">Все</button>
-<button class="tab" onclick="filter('pack')">Пакеты</button>
-<button class="tab" onclick="filter('gun')">Оружие</button>
-<button class="tab" onclick="filter('armor')">Броня</button>
-<button class="tab" onclick="filter('other')">Другое</button>
-</div>
-
 <input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()">
 
-<div class="grid" id="items">
-
 <!-- ПАКЕТЫ -->
-<div class="card pack">
-<h3>Бюджет пакет</h3><div class="price">8 грн</div>
+<div class="section-title">📦 ПАКЕТЫ</div>
+<div class="grid">
+
+<div class="card"><h3>Бюджет пакет</h3><div class="price">8 грн</div>
 <button class="btn" onclick="add('Бюджет пакет',8)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Бюджет пакет',8)">Купить</button>
-</div>
+<button class="btn buy" onclick="buyNow('Бюджет пакет',8)">Купить</button></div>
 
-<div class="card pack">
-<h3>VIP пакет</h3><div class="price">13 грн</div>
+<div class="card"><h3>Стандарт пакет</h3><div class="price">10 грн</div>
+<button class="btn" onclick="add('Стандарт пакет',10)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Стандарт пакет',10)">Купить</button></div>
+
+<div class="card"><h3>VIP пакет</h3><div class="price">13 грн</div>
 <button class="btn" onclick="add('VIP пакет',13)">В корзину</button>
-<button class="btn buy" onclick="buyNow('VIP пакет',13)">Купить</button>
+<button class="btn buy" onclick="buyNow('VIP пакет',13)">Купить</button></div>
+
 </div>
 
-<!-- ОРУЖИЕ -->
-<div class="card gun">
-<h3>МК14 ВК</h3><div class="price">7 грн</div>
-<button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button>
-</div>
+<!-- ПОПУЛЯРНОЕ -->
+<div class="section-title">🔥 ПОПУЛЯРНОЕ</div>
+<div class="grid">
+<div class="card"><h3>МК14</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14',7)">Купить</button></div>
 
-<div class="card gun">
-<h3>МК14 КБ</h3><div class="price">7 грн</div>
-<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>
-<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button>
+<div class="card"><h3>Фулл 6</h3><div class="price">9 грн</div>
+<button class="btn" onclick="add('Фулл 6',9)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Фулл 6',9)">Купить</button></div>
 </div>
 
 <!-- БРОНЯ -->
-<div class="card armor">
-<h3>Шлем</h3><div class="price">5 грн</div>
+<div class="section-title">🛡 БРОНЯ</div>
+<div class="grid">
+<div class="card"><h3>Шлем</h3><div class="price">5 грн</div>
 <button class="btn" onclick="add('Шлем',5)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Шлем',5)">Купить</button>
-</div>
+<button class="btn buy" onclick="buyNow('Шлем',5)">Купить</button></div>
 
-<div class="card armor">
-<h3>Броник</h3><div class="price">5 грн</div>
+<div class="card"><h3>Броник</h3><div class="price">5 грн</div>
 <button class="btn" onclick="add('Броник',5)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Броник',5)">Купить</button>
+<button class="btn buy" onclick="buyNow('Броник',5)">Купить</button></div>
+
+<div class="card"><h3>Фулл 6</h3><div class="price">9 грн</div>
+<button class="btn" onclick="add('Фулл 6',9)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Фулл 6',9)">Купить</button></div>
 </div>
 
-<!-- ДРУГОЕ -->
-<div class="card other">
-<h3>Теплак</h3><div class="price">5 грн</div>
+<!-- РЮКЗАКИ -->
+<div class="section-title">🎒 РЮКЗАКИ</div>
+<div class="grid">
+<div class="card"><h3>Рюкзак 6</h3><div class="price">6 грн</div>
+<button class="btn" onclick="add('Рюкзак 6',6)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Рюкзак 6',6)">Купить</button></div>
+
+<div class="card"><h3>Рюкзак 5</h3><div class="price">4 грн</div>
+<button class="btn" onclick="add('Рюкзак 5',4)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Рюкзак 5',4)">Купить</button></div>
+</div>
+
+<!-- ОРУЖИЕ -->
+<div class="section-title">🔫 ОРУЖИЕ</div>
+<div class="grid">
+<div class="card"><h3>МК14 улучшенная</h3><div class="price">4 грн</div>
+<button class="btn" onclick="add('МК14 улучшенная',4)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 улучшенная',4)">Купить</button></div>
+
+<div class="card"><h3>МК14 ВК</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button></div>
+
+<div class="card"><h3>МК14 КБ</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button></div>
+
+<div class="card"><h3>МК14 Сталик</h3><div class="price">7 грн</div>
+<button class="btn" onclick="add('МК14 Сталик',7)">В корзину</button>
+<button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button></div>
+</div>
+
+<!-- ОБВЕСЫ -->
+<div class="section-title">⚙️ ОБВЕСЫ</div>
+<div class="grid">
+<div class="card"><h3>Обвесы</h3><div class="price">4 грн</div>
+<button class="btn" onclick="add('Обвесы',4)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Обвесы',4)">Купить</button></div>
+
+<div class="card"><h3>Теплак</h3><div class="price">5 грн</div>
 <button class="btn" onclick="add('Теплак',5)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Теплак',5)">Купить</button>
+<button class="btn buy" onclick="buyNow('Теплак',5)">Купить</button></div>
 </div>
 
+<!-- СНАРЯЖЕНИЕ -->
+<div class="section-title">🧱 СНАРЯЖЕНИЕ</div>
+<div class="grid">
+<div class="card"><h3>Ткань</h3><div class="price">5 грн</div>
+<button class="btn" onclick="add('Ткань',5)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Ткань',5)">Купить</button></div>
+
+<div class="card"><h3>Ресурсы</h3><div class="price">2.5 грн</div>
+<button class="btn" onclick="add('Ресурсы',2.5)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Ресурсы',2.5)">Купить</button></div>
 </div>
+
+<!-- ПИСЬМА -->
+<div class="section-title">📜 ПИСЬМА</div>
+<div class="grid">
+<div class="card"><h3>Чёрное письмо</h3><div class="price">6 грн</div>
+<button class="btn" onclick="add('Чёрное письмо',6)">В корзину</button>
+<button class="btn buy" onclick="buyNow('Чёрное письмо',6)">Купить</button></div>
+</div>
+
 </div>
 
 <!-- КОРЗИНА -->
@@ -220,39 +228,34 @@ display:none;
 <h3>Оформление заказа</h3>
 <input class="input" id="nick" placeholder="Введите ник">
 <button class="order-btn" onclick="sendOrder()">Отправить</button>
+<button class="btn" onclick="closePopup()">Отмена</button>
 </div>
 </div>
-
-<!-- TOAST -->
-<div class="toast" id="toast">Добавлено в корзину</div>
 
 <script>
 let cart=[];
 let total=0;
 let quickItem=null;
 
-/* КОРЗИНА */
-function add(n,p){
-cart.push(n+" - "+p+" грн");
-total+=p;
+function add(n,p){cart.push(n+" - "+p+" грн");total+=p;render();}
+function buyNow(n,p){quickItem=n+" - "+p+" грн";openPopup();}
+function remove(i){cart.splice(i,1);recalc();}
+
+function recalc(){
+total=0;
+cart.forEach(i=>total+=parseFloat(i.split(" - ")[1]));
 render();
-toast("Добавлено");
 }
 
-function buyNow(n,p){
-quickItem=n+" - "+p+" грн";
-openPopup();
-}
-
-/* РЕНДЕР */
 function render(){
 let html="";
-cart.forEach(i=>html+="• "+i+"<br>");
+cart.forEach((i,index)=>{
+html+=`• ${i} <span onclick="remove(${index})" style="color:red">✖</span><br>`;
+});
 document.getElementById("cart-items").innerHTML=html||"🛒 Пусто";
 document.getElementById("cart-total").innerText=total+" грн";
 }
 
-/* ПОИСК */
 function searchItems(){
 let v=document.getElementById("search").value.toLowerCase();
 document.querySelectorAll(".card").forEach(c=>{
@@ -260,21 +263,9 @@ c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
 });
 }
 
-/* ФИЛЬТР */
-function filter(type){
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-event.target.classList.add("active");
-
-document.querySelectorAll(".card").forEach(c=>{
-if(type==="all") c.style.display="block";
-else c.style.display=c.classList.contains(type)?"block":"none";
-});
-}
-
-/* POPUP */
 function openPopup(){document.getElementById("popup").style.display="flex";}
+function closePopup(){document.getElementById("popup").style.display="none";}
 
-/* SEND */
 function sendOrder(){
 let nick=document.getElementById("nick").value;
 if(!nick){alert("Введите ник");return;}
@@ -291,14 +282,6 @@ text+="%0A💰 Итого: "+total+" грн";
 }
 
 window.open("https://t.me/TOXI_YT?text="+text);
-}
-
-/* TOAST */
-function toast(t){
-let x=document.getElementById("toast");
-x.innerText=t;
-x.style.display="block";
-setTimeout(()=>x.style.display="none",1000);
 }
 </script>
 
