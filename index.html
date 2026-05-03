@@ -81,7 +81,7 @@ header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align
 🛡 Фулл 6 броня<br>
 🪖 МК14 Сталик<br>
 🔫 МК14 ВК<br>
-🎯 МГ или Джс
+🎯 МГ / Джс
 </p>
 <button class="btn" onclick="add('VIP пакет',20)">В корзину</button>
 <button class="btn buy" onclick="buyNow('VIP пакет',20)">Купить</button>
@@ -238,14 +238,15 @@ text+=`• ${quickItem.name} - ${quickItem.price} грн`;
 quickItem=null;
 }else{
 let total=0;
-cart.forEach(i=>{
-text+=`• ${i.name} - ${i.price} грн\n`;
-total+=i.price;
+cart.forEach(item=>{
+text+=`• ${item.name} - ${item.price} грн\n`;
+total+=item.price;
 });
 text+=`\n💰 Итого: ${total} грн`;
 }
 
-window.open("https://t.me/share/url?url=&text="+encodeURIComponent(text),"_blank");
+let url="https://t.me/TOXI_YT?text="+encodeURIComponent(text);
+window.open(url,"_blank");
 }
 
 render();
