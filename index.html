@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOXI METRO SHOP 5.0 FULL</title>
+<title>TOXI METRO SHOP 5.0 FULL FIX</title>
 
 <style>
 body{margin:0;font-family:Arial;background:#0a0d16;color:#fff}
@@ -25,7 +25,6 @@ header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align
 .buy{background:#00ffb3;color:#000}
 
 .cart-btn{position:fixed;bottom:15px;right:15px;background:#00ffb3;color:#000;padding:12px 16px;border:none;border-radius:50px;font-weight:bold;z-index:1000}
-.badge{background:red;color:white;border-radius:50%;padding:2px 7px;font-size:12px;margin-left:5px}
 
 .popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:999}
 
@@ -39,7 +38,7 @@ header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align
 
 <body>
 
-<header>🔥 TOXI METRO SHOP 5.0 FULL</header>
+<header>🔥 TOXI METRO SHOP 5.0 FULL FIX</header>
 
 <div class="container">
 
@@ -165,29 +164,24 @@ header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let total = parseFloat(localStorage.getItem("total")) || 0;
 let quickItem = null;
 
 function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
-localStorage.setItem("total", total);
 }
 
-function add(n,p){
-cart.push(n+" - "+p);
-total += p;
+function add(name,price){
+cart.push({name,price});
 save();
 render();
 }
 
-function buyNow(n,p){
-quickItem = n+" - "+p;
+function buyNow(name,price){
+quickItem = {name,price};
 openOrder();
 }
 
 function removeItem(i){
-let price = parseFloat(cart[i].split(" - ")[1]);
-total -= price;
 cart.splice(i,1);
 save();
 render();
@@ -195,10 +189,13 @@ render();
 
 function render(){
 let html="";
-cart.forEach((i,index)=>{
-let parts=i.split(" - ");
-html+=`• ${parts[0]} - ${parts[1]} грн <span onclick="removeItem(${index})" style="color:red;cursor:pointer">✖</span><br>`;
+let total=0;
+
+cart.forEach((item,index)=>{
+total+=item.price;
+html+=`• ${item.name} - ${item.price} грн <span onclick="removeItem(${index})" style="color:red;cursor:pointer">✖</span><br>`;
 });
+
 document.getElementById("cart-items").innerHTML=html||"Пусто";
 document.getElementById("cart-total").innerText=total+" грн";
 document.getElementById("cartCount").innerText=cart.length;
@@ -206,7 +203,6 @@ document.getElementById("cartCount").innerText=cart.length;
 
 function clearCart(){
 cart=[];
-total=0;
 save();
 render();
 }
@@ -230,11 +226,15 @@ if(!nick){alert("Введите ник");return;}
 let text="🛒 Заказ\n👤 Ник: "+nick+"\n\n";
 
 if(quickItem){
-text+="• "+quickItem;
+text+=`• ${quickItem.name} - ${quickItem.price} грн`;
 quickItem=null;
 }else{
-cart.forEach(i=>text+="• "+i+"\n");
-text+="\n💰 Итого: "+total+" грн";
+let total=0;
+cart.forEach(item=>{
+text+=`• ${item.name} - ${item.price} грн\n`;
+total+=item.price;
+});
+text+=`\n💰 Итого: ${total} грн`;
 }
 
 window.open("https://t.me/TOXI_YT?text="+encodeURIComponent(text));
