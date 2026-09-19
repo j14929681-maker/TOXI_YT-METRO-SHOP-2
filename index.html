@@ -1,241 +1,1721 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOXI METRO SHOP 5.0 FULL</title>
+<!DOCTYPE html><html lang="ru">  <head>    <meta charset="UTF-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+<title>TOXI METRO SHOP 5.0 FULL</title><style>    
+*{box-sizing:border-box}  html{scroll-behavior:smooth}  body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:
+radial-gradient(circle at 15% 10%,rgba(255,123,0,.12),transparent 30%),
+radial-gradient(circle at 85% 30%,rgba(0,255,179,.08),transparent 30%),
+linear-gradient(135deg,#070a12,#0d1222 45%,#080b14);
+color:#fff;
+min-height:100vh;
+}
 
-<style>
-body{margin:0;font-family:Arial;background:#0a0d16;color:#fff}
-header{background:linear-gradient(90deg,#ffd000,#ff7b00);padding:20px;text-align:center;font-size:24px;font-weight:bold}
-.container{padding:15px;max-width:1000px;margin:auto;padding-bottom:120px}
+header{
+position:relative;
+overflow:hidden;
+background:linear-gradient(90deg,#ffd000,#ff9d00,#ff6500);
+padding:22px 15px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:.5px;
+box-shadow:0 4px 25px rgba(255,123,0,.25);
+}
 
-.search{width:100%;padding:10px;border-radius:10px;border:none;background:#151a2e;color:#fff;margin-top:10px}
+header:after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+transform:skewX(-20deg);
+animation:shine 4s infinite;
+}
 
-.section-title{margin-top:20px;border-left:4px solid #ffd000;padding-left:8px}
+@keyframes shine{
+0%{left:-100%}
+45%,100%{left:150%}
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+.container{
+padding:18px 15px 130px;
+max-width:1100px;
+margin:auto;
+}
 
-.card{background:#151a2e;padding:12px;border-radius:12px;border:1px solid #2a3555;transition:.2s}
-.card:hover{transform:translateY(-5px) scale(1.03)}
+.search{
+width:100%;
+height:48px;
+padding:0 16px;
+border-radius:14px;
+border:1px solid #293657;
+outline:none;
+background:rgba(21,26,46,.92);
+color:#fff;
+margin-top:5px;
+font-size:15px;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+transition:.2s;
+}
 
-.price{color:#00ffb3;font-weight:bold}
+.search::placeholder{color:#7f89a5}
 
-.btn{margin-top:6px;padding:8px;background:#ff7b00;border:none;border-radius:8px;color:white;width:100%}
-.buy{background:#00ffb3;color:#000}
+.search:focus{
+border-color:#00ffb3;
+box-shadow:0 0 0 3px rgba(0,255,179,.08),0 8px 30px rgba(0,0,0,.3);
+}
 
-.cart-btn{position:fixed;bottom:15px;right:15px;background:#00ffb3;color:#000;padding:12px 16px;border:none;border-radius:50px;font-weight:bold;z-index:1000}
+.section-title{
+margin-top:28px;
+margin-bottom:5px;
+border-left:4px solid #ffd000;
+padding:9px 0 9px 12px;
+font-size:17px;
+font-weight:bold;
+background:linear-gradient(90deg,rgba(255,208,0,.08),transparent);
+border-radius:0 8px 8px 0;
+}
 
-.popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:999}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:14px;
+margin-top:12px;
+}
 
-.popup-box{background:#151a2e;padding:20px;border-radius:12px;width:90%;max-width:400px}
+.card{
+position:relative;
+overflow:hidden;
+background:linear-gradient(145deg,rgba(25,31,55,.98),rgba(15,20,37,.98));
+padding:16px;
+border-radius:16px;
+border:1px solid #293657;
+transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+animation:cardIn .45s ease both;
+}
 
-.input{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;background:#0a0d16;color:white}
+.card:before{
+content:"";
+position:absolute;
+top:-70px;
+right:-70px;
+width:140px;
+height:140px;
+background:radial-gradient(circle,rgba(255,123,0,.14),transparent 70%);
+pointer-events:none;
+}
 
-.order-btn{width:100%;margin-top:10px;padding:8px;background:#00ffb3;border:none;border-radius:8px}
-</style>
-</head>
+.card:hover{
+transform:translateY(-5px);
+border-color:#ff8a00;
+box-shadow:0 14px 35px rgba(0,0,0,.35),0 0 20px rgba(255,123,0,.08);
+}
 
-<body>
+.card h3{
+margin:0 0 9px;
+font-size:17px;
+position:relative;
+}
 
-<header>🔥 TOXI METRO SHOP 5.0 FULL</header>
+.card p{line-height:1.65}
 
-<div class="container">
+@keyframes cardIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
 
-<input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()">
+.price{
+color:#00ffb3;
+font-weight:bold;
+font-size:17px;
+margin-bottom:7px;
+text-shadow:0 0 12px rgba(0,255,179,.2);
+}
 
-<div class="section-title">📦 ПАКЕТЫ</div>
-<div class="grid">
+.btn{
+margin-top:7px;
+padding:11px 10px;
+background:linear-gradient(135deg,#ff9a00,#ff6500);
+border:none;
+border-radius:10px;
+color:white;
+width:100%;
+font-size:14px;
+font-weight:bold;
+cursor:pointer;
+transition:.15s;
+box-shadow:0 5px 15px rgba(255,102,0,.15);
+}
 
-<div class="card">
-<h3>Бюджет пакет</h3>
-<div class="price">12 грн</div>
-<p style="color:#aaa;font-size:13px">
-🛡 Шлем 5 уровня<br>
-🛡 Броня 5 уровня<br>
-🎒 Рюкзак 5 уровня<br>
-🔫 МК14 Улучшенная
-</p>
-<button class="btn" onclick="add('Бюджет пакет',12)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Бюджет пакет',12)">Купить</button>
+.btn:hover{
+filter:brightness(1.1);
+transform:translateY(-1px);
+}
+
+.btn:active{transform:scale(.97)}
+
+.buy{
+background:linear-gradient(135deg,#00ffc2,#00d99a);
+color:#00150f;
+box-shadow:0 5px 15px rgba(0,255,179,.15);
+}
+
+.cart-btn{
+position:fixed;
+bottom:18px;
+right:18px;
+background:linear-gradient(135deg,#00ffc2,#00d99a);
+color:#00150f;
+padding:13px 19px;
+border:none;
+border-radius:50px;
+font-weight:bold;
+font-size:15px;
+z-index:1000;
+cursor:pointer;
+box-shadow:0 8px 25px rgba(0,0,0,.35),0 0 20px rgba(0,255,179,.15);
+transition:.2s;
+}
+
+.cart-btn:hover{transform:translateY(-3px) scale(1.03)}
+.cart-btn:active{transform:scale(.94)}
+
+#cartCount{
+display:inline-block;
+min-width:20px;
+text-align:center;
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.78);
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+padding:15px;
+}
+
+.popup-box{
+background:linear-gradient(145deg,#1a2139,#101527);
+padding:22px;
+border-radius:18px;
+width:90%;
+max-width:420px;
+border:1px solid #344264;
+box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 30px rgba(0,0,0,.3);
+animation:popupIn .2s ease;
+}
+
+@keyframes popupIn{
+from{opacity:0;transform:scale(.94) translateY(10px)}
+to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.popup-box h3{
+margin-top:0;
+font-size:20px;
+}
+
+#cart-items{
+max-height:280px;
+overflow-y:auto;
+line-height:1.8;
+color:#d9deed;
+padding:8px 2px;
+}
+
+#cart-items::-webkit-scrollbar{width:5px}
+
+#cart-items::-webkit-scrollbar-thumb{
+background:#344264;
+border-radius:10px;
+}
+
+#cart-total{
+font-size:18px;
+color:#00ffb3;
+border-top:1px solid #2d3855;
+padding-top:12px;
+}
+
+.input{
+width:100%;
+height:46px;
+padding:0 13px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #293657;
+outline:none;
+background:#0a0d16;
+color:white;
+font-size:15px;
+}
+
+.input::placeholder{color:#78839e}
+.input:focus{border-color:#00ffb3}
+
+.order-btn{
+width:100%;
+margin-top:10px;
+padding:11px;
+background:linear-gradient(135deg,#00ffc2,#00d99a);
+color:#00150f;
+border:none;
+border-radius:10px;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+transition:.15s;
+}
+
+.order-btn:hover{filter:brightness(1.08)}
+.order-btn:active{transform:scale(.97)}
+
+@media(max-width:600px){
+
+header{
+font-size:19px;
+padding:18px 10px;
+}
+
+.container{
+padding:14px 11px 115px;
+}
+
+.search{
+height:47px;
+font-size:15px;
+}
+
+.section-title{
+margin-top:24px;
+font-size:16px;
+}
+
+.grid{
+grid-template-columns:1fr 1fr;
+gap:9px;
+}
+
+.card{
+padding:12px;
+border-radius:13px;
+}
+
+.card h3{
+font-size:15px;
+line-height:1.25;
+}
+
+.card p{
+font-size:12px !important;
+line-height:1.5;
+}
+
+.price{font-size:16px}
+
+.btn{
+padding:10px 6px;
+font-size:12px;
+border-radius:9px;
+}
+
+.cart-btn{
+right:12px;
+bottom:12px;
+padding:12px 16px;
+}
+
+.popup{padding:10px}
+
+.popup-box{
+width:100%;
+max-width:420px;
+padding:18px;
+border-radius:16px;
+}
+}
+
+@media(max-width:370px){
+
+.grid{grid-template-columns:1fr}
+
+header{font-size:17px}
+
+.card h3{font-size:16px}
+
+.btn{font-size:13px}
+
+}
+</style></head><body><header>🔥 TOXI METRO SHOP 5.0 FULL</header> <div id="accountBox" style="text-align:center;padding:12px 10px;background:#101527;border-bottom:1px solid #293657">
+<button class="btn" style="max-width:220px;margin:0" onclick="openAuth()">👤 Войти / Регистрация</button>
+
+</div>
+  
+<button
+  id="adminButton"
+  class="btn"
+  
+  style="max-width:220px;margin:8px auto 0;display:none;background:linear-gradient(135deg,#ff3b30,#c90000)"
+  onclick="openAdmin()">
+  🛠 Админка
+</button>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><div class="container"><input class="search" id="search" placeholder="🔍 Поиск..." onkeyup="searchItems()"><div class="section-title">📦 ПАКЕТЫ</div><div class="grid"><div class="card">  <h3>Бюджет пакет</h3>    
+<div class="price">12 грн</div>    
+<p style="color:#aaa;font-size:13px">    
+🛡 Шлем 5 уровня<br>    
+🛡 Броня 5 уровня<br>    
+🎒 Рюкзак 5 уровня<br>    
+🔫 МК14 Улучшенная    
+</p>    
+<button class="btn" onclick="add('Бюджет пакет',12)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Бюджет пакет',12)">Купить</button>    
+</div><div class="card">    
+<h3>Стандарт пакет</h3>    
+<div class="price">16 грн</div>    
+<p style="color:#aaa;font-size:13px">    
+🛡 Шлем 6 уровня<br>    
+🛡 Броня 6 уровня<br>    
+🎒 Рюкзак 6 уровня<br>    
+🔫 МК14 ВК    
+</p>    
+<button class="btn" onclick="add('Стандарт пакет',16)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Стандарт пакет',16)">Купить</button>    
+</div><div class="card">    
+<h3>VIP пакет</h3>    
+<div class="price">20 грн</div>    
+<p style="color:#aaa;font-size:13px">    
+🛡 Фулл 6 броня<br>    
+🪖 МК14 Сталик<br>    
+🔫 МК14 ВК<br>    
+🎯 На выбор: МГ или Джс    
+</p>    
+<button class="btn" onclick="add('VIP пакет',20)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('VIP пакет',20)">Купить</button>    
+</div></div><div class="section-title">🔥 МК ОРУЖИЕ</div><div class="grid"><div class="card">    
+<h3>МК14 Улучшенная</h3>    
+<div class="price">4 грн</div>    
+<button class="btn" onclick="add('МК14 Улучшенная',4)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('МК14 Улучшенная',4)">Купить</button>    
+</div><div class="card">    
+<h3>МК14 ВК</h3>    
+<div class="price">7 грн</div>    
+<button class="btn" onclick="add('МК14 ВК',7)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button>    
+</div><div class="card">    
+<h3>МК14 КБ</h3>    
+<div class="price">7 грн</div>    
+<button class="btn" onclick="add('МК14 КБ',7)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button>    
+</div><div class="card">    
+<h3>МК14 Сталик</h3>    
+<div class="price">7 грн</div>    
+<button class="btn" onclick="add('МК14 Сталик',7)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button>    
+</div></div><div class="section-title">🛡 БРОНЯ</div><div class="grid"><div class="card">    
+<h3>Шлем 6</h3>    
+<div class="price">4 грн</div>    
+<button class="btn" onclick="add('Шлем 6',4)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Шлем 6',4)">Купить</button>    
+</div><div class="card">    
+<h3>Броник 6</h3>    
+<div class="price">4 грн</div>    
+<button class="btn" onclick="add('Броник 6',4)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Броник 6',4)">Купить</button>    
+</div><div class="card">    
+<h3>Рюкзак 6</h3>    
+<div class="price">3 грн</div>    
+<button class="btn" onclick="add('Рюкзак 6',3)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Рюкзак 6',3)">Купить</button>    
+</div></div><div class="section-title">⚙️ ОБВЕСЫ</div><div class="grid"><div class="card">    
+<h3>Обвесы</h3>    
+<div class="price">1.5 грн</div>    
+<button class="btn" onclick="add('Обвесы',1.5)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Обвесы',1.5)">Купить</button>    
+</div><div class="card">    
+<h3>Теплак</h3>    
+<div class="price">4 грн</div>    
+<button class="btn" onclick="add('Теплак',4)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Теплак',4)">Купить</button>    
+</div></div><div class="section-title">🧱 СНАРЯЖЕНИЕ</div><div class="grid"><div class="card">    
+<h3>Ткань</h3>    
+<div class="price">4 грн</div>    
+<button class="btn" onclick="add('Ткань',4)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Ткань',4)">Купить</button>    
+</div><div class="card">    
+<h3>Закуп в катку</h3>    
+<div class="price">1 грн</div>    
+<p style="color:#aaa;font-size:13px">    
+💊 Аптечки 4<br>    
+⚡ Энергетики 13<br>    
+🔫 Патроны 300<br>    
+💣 Гранаты 3 шт    
+</p>    
+<button class="btn" onclick="add('Закуп в катку',1)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Закуп в катку',1)">Купить</button>    
+</div></div><div class="section-title">📜 ПИСЬМА</div><div class="grid"><div class="card">    
+<h3>Чёрное письмо</h3>    
+<div class="price">3 грн</div>    
+<button class="btn" onclick="add('Чёрное письмо',3)">В корзину</button>    
+<button class="btn buy" onclick="buyNow('Чёрное письмо',3)">Купить</button>    
+</div></div></div><button class="cart-btn" onclick="openCart()">    
+🛒 <span id="cartCount">0</span>    
+</button><div class="popup" id="cartPopup">    
+<div class="popup-box"><h3>🛒 Корзина</h3><div id="cart-items">Пусто</div><h4 id="cart-total">0 грн</h4><button class="order-btn" onclick="openOrder()">Оформить</button>    
+<button class="btn" onclick="clearCart()">Очистить</button>    
+<button class="btn" onclick="closeCart()">Закрыть</button>  </div>    
+</div> <div class="popup" id="orderPopup">  
+  <div class="popup-box">  
+    <h3>Оформление</h3>  
+    <input class="input" id="nick" placeholder="Введите ник">  
+    <button class="order-btn" onclick="sendOrder()">Отправить</button>  
+    <button class="btn" onclick="closeOrder()">Отмена</button>  
+  </div>  
+</div>  <div class="popup" id="authPopup">  
+  <div class="popup-box">  
+    <h3>👤 Аккаунт</h3>  <input class="input" id="authNick" placeholder="Введите ник">  
+
+<input class="input" id="authPassword" type="password" placeholder="Введите пароль">  
+
+<button class="order-btn" onclick="registerAccount()">📝 Регистрация</button>  
+
+<button class="btn buy" onclick="loginAccount()">🔐 Войти</button>  
+
+<button class="btn" onclick="closeAuth()">Отмена</button>  
+
+<p id="authStatus" style="color:#aaa;font-size:13px;text-align:center"></p>
+
+  </div>  
+</div>  <div class="popup" id="profilePopup">  
+  <div class="popup-box">  <div style="text-align:center">  
+
+  <div style="  
+    width:82px;  
+    height:82px;  
+    margin:0 auto 12px;  
+    border-radius:50%;  
+    background:linear-gradient(135deg,#ffd000,#ff6500);  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+    font-size:40px;  
+    box-shadow:0 0 25px rgba(255,157,0,.25);  
+  ">👤</div>  
+
+  <h3 style="margin-bottom:4px">Профиль</h3>  
+
+  <div id="profileUsername"  
+       style="color:#00ffb3;font-size:18px;font-weight:bold">  
+    Загрузка...  
+  </div>  
+
+</div>  
+
+<div style="  
+  margin-top:18px;  
+  background:#0a0d16;  
+  border:1px solid #293657;  
+  border-radius:12px;  
+  padding:14px;  
+  line-height:1.9;  
+">  
+
+  <div>🔢 ID: <b id="profileId">—</b></div>  
+  <div>📅 Регистрация: <b id="profileDate">—</b></div>  
+  <div>💰 Баланс: <b id="profileBalance">0 грн</b></div>  
+  
+<button class="order-btn" onclick="openTopup()">💰 Пополнить баланс</button>
+
+<div style="margin-top:14px">
+  <input
+    class="input"
+    id="profilePromoCode"
+    placeholder="Введите промокод"
+  >
+
+  <button
+    class="order-btn"
+    onclick="activateProfilePromo()">
+    🎟 Активировать промокод
+  </button>
+
+  <div
+    id="profilePromoStatus"
+    style="
+      margin-top:8px;
+      font-size:13px;
+      text-align:center;
+      color:#aaa;
+    ">
+  </div>
+</div>
+  
+</div>  
+
+<h4 style="margin-bottom:8px">🛒 История покупок</h4>  
+
+<div id="profileOrders"  
+     style="  
+     max-height:180px;  
+     overflow-y:auto;  
+     color:#aaa;  
+     font-size:13px;  
+     line-height:1.7;  
+     ">  
+  Покупок пока нет  
+</div>  
+
+<button class="btn" onclick="closeProfile()">  
+  Закрыть  
+</button>
+
+  </div>  
+</div> 
+  </div>  
+</div>  
+
+<div class="popup" id="topupPopup">
+  <div class="popup-box">
+
+    <h3>💰 Пополнение баланса</h3>
+
+    <p style="color:#aaa;font-size:13px">
+      Введите сумму пополнения. Минимум — 5 грн.
+    </p>
+
+    <input
+      class="input"
+      id="topupAmount"
+      type="number"
+      min="5"
+      step="0.01"
+      placeholder="Сумма, например 50"
+    >
+
+    <div style="
+      margin-top:12px;
+      padding:12px;
+      background:#0a0d16;
+      border:1px solid #293657;
+      border-radius:10px;
+      line-height:1.7;
+    ">
+      💳 Карта:<br>
+      <b>4441114435298045</b>
+      <br><br>
+      🔢 Ваш ID профиля:<br>
+      <b id="topupProfileId" style="color:#00ffb3">—</b>
+    </div>
+
+    <p style="color:#aaa;font-size:12px;line-height:1.5">
+      После перевода нажмите «Я оплатил».
+      Заявка будет отправлена на проверку.
+    </p>
+
+    <button class="order-btn" onclick="createTopup()">
+      ✅ Я оплатил
+    </button>
+
+    <button class="btn" onclick="closeTopup()">
+      Отмена
+    </button>
+
+  </div>
 </div>
 
-<div class="card">
-<h3>Стандарт пакет</h3>
-<div class="price">16 грн</div>
-<p style="color:#aaa;font-size:13px">
-🛡 Шлем 6 уровня<br>
-🛡 Броня 6 уровня<br>
-🎒 Рюкзак 6 уровня<br>
-🔫 МК14 ВК
-</p>
-<button class="btn" onclick="add('Стандарт пакет',16)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Стандарт пакет',16)">Купить</button>
-</div>
+<div class="popup" id="adminPopup">
+  <div class="popup-box" style="max-width:650px">
 
-<div class="card">
-<h3>VIP пакет</h3>
-<div class="price">20 грн</div>
-<p style="color:#aaa;font-size:13px">
-🛡 Фулл 6 броня<br>
-🪖 МК14 Сталик<br>
-🔫 МК14 ВК<br>
-🎯 На выбор: МГ или Джс
-</p>
-<button class="btn" onclick="add('VIP пакет',20)">В корзину</button>
-<button class="btn buy" onclick="buyNow('VIP пакет',20)">Купить</button>
-</div>
+    <h3>🛠 Админ-панель</h3>
 
-</div>
+    <div style="
+      background:#0a0d16;
+      border:1px solid #293657;
+      border-radius:12px;
+      padding:14px;
+      margin-bottom:14px;
+    ">
+      <b>💰 Заявки на пополнение</b>
+    </div>
+    
+    <div id="adminTopups" style="
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 5px;
+  -webkit-overflow-scrolling: touch;
+">
+      Загрузка...
+    </div>
 
-<div class="section-title">🔥 МК ОРУЖИЕ</div>
-<div class="grid">
-<div class="card"><h3>МК14 Улучшенная</h3><div class="price">4 грн</div><button class="btn" onclick="add('МК14 Улучшенная',4)">В корзину</button><button class="btn buy" onclick="buyNow('МК14 Улучшенная',4)">Купить</button></div>
-<div class="card"><h3>МК14 ВК</h3><div class="price">7 грн</div><button class="btn" onclick="add('МК14 ВК',7)">В корзину</button><button class="btn buy" onclick="buyNow('МК14 ВК',7)">Купить</button></div>
-<div class="card"><h3>МК14 КБ</h3><div class="price">7 грн</div><button class="btn" onclick="add('МК14 КБ',7)">В корзину</button><button class="btn buy" onclick="buyNow('МК14 КБ',7)">Купить</button></div>
-<div class="card"><h3>МК14 Сталик</h3><div class="price">7 грн</div><button class="btn" onclick="add('МК14 Сталик',7)">В корзину</button><button class="btn buy" onclick="buyNow('МК14 Сталик',7)">Купить</button></div>
-</div>
+    <button class="btn" onclick="loadAdminTopups()">
+      🔄 Обновить
+    </button>
 
-<div class="section-title">🛡 БРОНЯ</div>
-<div class="grid">
-<div class="card"><h3>Шлем 6</h3><div class="price">4 грн</div><button class="btn" onclick="add('Шлем 6',4)">В корзину</button><button class="btn buy" onclick="buyNow('Шлем 6',4)">Купить</button></div>
-<div class="card"><h3>Броник 6</h3><div class="price">4 грн</div><button class="btn" onclick="add('Броник 6',4)">В корзину</button><button class="btn buy" onclick="buyNow('Броник 6',4)">Купить</button></div>
-<div class="card"><h3>Рюкзак 6</h3><div class="price">3 грн</div><button class="btn" onclick="add('Рюкзак 6',3)">В корзину</button><button class="btn buy" onclick="buyNow('Рюкзак 6',3)">Купить</button></div>
-</div>
+    <button class="btn" onclick="closeAdmin()">
+      Закрыть
+    </button>
 
-<div class="section-title">⚙️ ОБВЕСЫ</div>
-<div class="grid">
-<div class="card"><h3>Обвесы</h3><div class="price">1.5 грн</div><button class="btn" onclick="add('Обвесы',1.5)">В корзину</button><button class="btn buy" onclick="buyNow('Обвесы',1.5)">Купить</button></div>
-<div class="card"><h3>Теплак</h3><div class="price">4 грн</div><button class="btn" onclick="add('Теплак',4)">В корзину</button><button class="btn buy" onclick="buyNow('Теплак',4)">Купить</button></div>
+  </div>
 </div>
-
-<div class="section-title">🧱 СНАРЯЖЕНИЕ</div>
-<div class="grid">
-<div class="card"><h3>Ткань</h3><div class="price">4 грн</div><button class="btn" onclick="add('Ткань',4)">В корзину</button><button class="btn buy" onclick="buyNow('Ткань',4)">Купить</button></div>
-
-<div class="card">
-<h3>Закуп в катку</h3>
-<div class="price">1 грн</div>
-<p style="color:#aaa;font-size:13px">
-💊 Аптечки 4<br>
-⚡ Энергетики 13<br>
-🔫 Патроны 300<br>
-💣 Гранаты 3 шт
-</p>
-<button class="btn" onclick="add('Закуп в катку',1)">В корзину</button>
-<button class="btn buy" onclick="buyNow('Закуп в катку',1)">Купить</button>
-</div>
-</div>
-
-<div class="section-title">📜 ПИСЬМА</div>
-<div class="grid">
-<div class="card"><h3>Чёрное письмо</h3><div class="price">3 грн</div><button class="btn" onclick="add('Чёрное письмо',3)">В корзину</button><button class="btn buy" onclick="buyNow('Чёрное письмо',3)">Купить</button></div>
-</div>
-
-</div>
-
-<button class="cart-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></button>
-
-<div class="popup" id="cartPopup">
-<div class="popup-box">
-<h3>🛒 Корзина</h3>
-<div id="cart-items">Пусто</div>
-<h4 id="cart-total">0 грн</h4>
-<button class="order-btn" onclick="openOrder()">Оформить</button>
-<button class="btn" onclick="clearCart()">Очистить</button>
-<button class="btn" onclick="closeCart()">Закрыть</button>
-</div>
-</div>
-
-<div class="popup" id="orderPopup">
-<div class="popup-box">
-<h3>Оформление</h3>
-<input class="input" id="nick" placeholder="Введите ник">
-<button class="order-btn" onclick="sendOrder()">Отправить</button>
-<button class="btn" onclick="closeOrder()">Отмена</button>
-</div>
-</div>
-
+  
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let total = parseFloat(localStorage.getItem("total")) || 0;
-let quickItem = null;
+const SUPABASE_URL = "https://tujtvtxkqjxwcfryilwe.supabase.co";
+  
+  
+const SUPABASE_KEY = "sb_publishable_uJhVfIpzJ2_o6frdyPWC7A_W5X-WTiV";  
+  
+const sb = window.supabase.createClient(  
+SUPABASE_URL,  
+SUPABASE_KEY  
+);  
 
-function save(){
-localStorage.setItem("cart", JSON.stringify(cart));
-localStorage.setItem("total", total);
-}
-
+const ADMIN_ID = "8a3ed0a7-a1b7-4abf-a95e-c694fbd3cdf4";
+  
+let cart = JSON.parse(localStorage.getItem("cart")) || [];  
+let total = parseFloat(localStorage.getItem("total")) || 0;  
+let quickItem = null;  
+  
+function save(){  
+localStorage.setItem("cart",JSON.stringify(cart));  
+localStorage.setItem("total",total);  
+}  
+  
 function add(n,p){
-cart.push(n+" - "+p);
-total += p;
-save();
-render();
-}
 
-function buyNow(n,p){
-quickItem = n+" - "+p;
-openOrder();
+  cart.push(n+" - "+p+" грн");
+
+  total += p;
+
+  save();
+
+  render();
+
+}
+  
+async function buyNow(n,p){
+
+  quickItem = n + " - " + p + " грн";
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  if(user){
+
+    await sendOrder();
+
+  }else{
+
+    openOrder();
+
+  }
+
 }
 
 function removeItem(i){
-let price = parseFloat(cart[i].split(" - ")[1]);
-total -= price;
-cart.splice(i,1);
-save();
-render();
-}
 
-function render(){
-let html="";
-cart.forEach((i,index)=>{
-let parts=i.split(" - ");
-html+=`• ${parts[0]} - ${parts[1]} грн <span onclick="removeItem(${index})" style="color:red;cursor:pointer">✖</span><br>`;
-});
-document.getElementById("cart-items").innerHTML=html||"Пусто";
-document.getElementById("cart-total").innerText=total+" грн";
-document.getElementById("cartCount").innerText=cart.length;
+  if(i < 0 || i >= cart.length) return;
+
+  cart.splice(i,1);
+
+  total = 0;
+
+  cart.forEach(item => {
+
+    let price = parseFloat(
+      item.split(" - ")[1]
+    );
+
+    if(!isNaN(price)){
+      total += price;
+    }
+
+  });
+
+  save();
+
+  render();
+
 }
 
 function clearCart(){
-cart=[];
-total=0;
-save();
-render();
+
+  cart = [];
+
+  total = 0;
+
+  save();
+
+  render();
+
+}
+  
+function searchItems(){  
+  
+let v=document.getElementById("search").value.toLowerCase();  
+  
+document.querySelectorAll(".card").forEach(c=>{  
+  
+c.style.display =  
+c.innerText.toLowerCase().includes(v)  
+? "block"  
+: "none";  
+  
+});  
+  
+}  
+
+function render(){
+
+  let html = "";
+
+  cart.forEach((item,index)=>{
+
+    html += `
+      <div style="margin:8px 0">
+        • ${item}
+        <span
+          onclick="removeItem(${index})"
+          style="color:red;cursor:pointer;margin-left:8px">
+          ✖
+        </span>
+      </div>
+    `;
+
+  });
+
+  document.getElementById("cart-items").innerHTML = html || "Пусто";
+
+  document.getElementById("cart-total").innerText =
+    total + " грн";
+
+  document.getElementById("cartCount").innerText =
+    cart.length;
+
+  }
+  
+function openCart(){
+
+  quickItem = null;
+
+  render();
+
+  document.getElementById("cartPopup").style.display = "flex";
+
+}
+  
+function closeCart(){  
+  
+document.getElementById("cartPopup").style.display="none";  
+  
+}  
+  
+async function openOrder(){
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  if(user){
+
+    await sendOrder();
+
+  }else{
+
+    document.getElementById("orderPopup").style.display = "flex";
+
+  }
+
+}
+  
+async function sendOrder(){
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  if(!user){
+
+    alert("❌ Для покупки необходимо войти в аккаунт");
+    closeOrder();
+    openAuth();
+    return;
+
+  }
+
+  const { data: profile, error: profileError } = await sb
+    .from("TOXI_YT")
+    .select("username, balance")
+    .eq("id", user.id)
+    .single();
+
+  if(profileError || !profile){
+
+    console.error("Ошибка загрузки профиля:", profileError);
+    alert("❌ Не удалось загрузить профиль");
+    return;
+
+  }
+
+  let orderItems = "";
+  let orderTotal = 0;
+
+  if(quickItem){
+
+    orderItems = quickItem;
+
+    const match = quickItem.match(/-\s*([\d.,]+)\s*грн/);
+
+    if(match){
+      orderTotal = parseFloat(
+        match[1].replace(",", ".")
+      );
+    }
+
+  }else{
+
+    if(cart.length === 0){
+
+      alert("❌ Корзина пуста");
+      return;
+
+    }
+
+    orderItems = cart.join("\n");
+    orderTotal = Number(total);
+
+  }
+
+  if(!orderTotal || orderTotal <= 0){
+
+    alert("❌ Некорректная сумма заказа");
+    return;
+
+  }
+
+  const balance = Number(profile.balance || 0);
+
+  const confirmed = confirm(
+    "🛒 Подтверждение покупки\n\n" +
+    "Товар:\n" +
+    orderItems + "\n\n" +
+    "💰 Стоимость: " + orderTotal + " грн\n" +
+    "💳 Ваш баланс: " + balance + " грн\n\n" +
+    "Вы уверены, что хотите совершить покупку?"
+  );
+
+  if(!confirmed){
+    return;
+  }
+
+  if(balance < orderTotal){
+
+    alert(
+      "❌ Недостаточно средств!\n\n" +
+      "Стоимость: " + orderTotal + " грн\n" +
+      "Баланс: " + balance + " грн\n\n" +
+      "Пополните баланс и попробуйте снова."
+    );
+
+    return;
+  }
+
+  
+  // Списываем деньги через безопасную RPC-функцию
+const { data: newBalance, error: paymentError } = await sb
+  .rpc("pay_for_order", {
+    p_amount: orderTotal,
+    p_items: orderItems
+  });
+
+  if(paymentError){
+
+    console.error("Ошибка оплаты:", paymentError);
+
+    alert(
+      "❌ Оплата не прошла\n\n" +
+      paymentError.message
+    );
+
+    return;
+
+  }
+
+  // Формируем сообщение для Telegram
+  let text =
+    "🛒 Заказ\n" +
+    "👤 Ник: " + profile.username + "\n\n";
+
+  if(quickItem){
+
+    text += "• " + quickItem;
+
+  }else{
+
+    cart.forEach(i => {
+
+      text += "• " + i + "\n";
+
+    });
+
+    text += "\n💰 Итого: " + orderTotal + " грн";
+
+  }
+
+  // Показываем новый баланс
+  alert(
+    "✅ Оплата успешно проведена!\n\n" +
+    "💰 Списано: " + orderTotal + " грн\n" +
+    "💳 Новый баланс: " + newBalance + " грн\n\n" +
+    "Сейчас откроется Telegram для оформления заказа."
+  );
+
+  // Очищаем корзину только после успешной оплаты
+  if(!quickItem){
+
+    cart = [];
+    total = 0;
+
+    save();
+    render();
+
+  }
+
+const tgUrl = "https://t.me/TOXI_YT?text=" + encodeURIComponent(text);
+
+window.open(tgUrl, "_blank");
+  
+  quickItem = null;
+
+  closeOrder();
+
+  // Открываем Telegram только после успешной оплаты
+
+
+}
+  
+function normalizeUsername(username){
+  
+  return username.trim().toLowerCase();  
+}  
+  
+function fakeEmail(username){  
+  return normalizeUsername(username) + "@toxi.local";  
+}  
+  
+function openAuth(){  
+  document.getElementById("authPopup").style.display = "flex";  
+  document.getElementById("authStatus").innerText = "";  
+}  
+  
+function closeAuth(){  
+  document.getElementById("authPopup").style.display = "none";  
+}  
+  
+async function registerAccount(){  
+  
+  const username = document.getElementById("authNick").value.trim();  
+  const password = document.getElementById("authPassword").value;  
+  
+  if(username.length < 3){  
+    document.getElementById("authStatus").innerText =  
+      "❌ Ник должен быть минимум 3 символа";  
+    return;  
+  }  
+  
+  if(password.length < 6){  
+    document.getElementById("authStatus").innerText =  
+      "❌ Пароль должен быть минимум 6 символов";  
+    return;  
+  }  
+  
+  const email = fakeEmail(username);  
+  
+  document.getElementById("authStatus").innerText =  
+    "⏳ Регистрация...";  
+  
+  const { data, error } = await sb.auth.signUp({  
+    email: email,  
+    password: password,  
+    options: {  
+      data: {  
+        username: username  
+      }  
+    }  
+  });  
+  
+  if(error){  
+    document.getElementById("authStatus").innerText =  
+      "❌ " + error.message;  
+    return;  
+  }  
+  
+  if(!data.user){  
+    document.getElementById("authStatus").innerText =  
+      "❌ Не удалось создать аккаунт";  
+    return;  
+  }  
+  
+  const { error: profileError } = await sb  
+    .from("TOXI_YT")  
+    .insert({  
+      id: data.user.id,  
+      username: username  
+    });  
+  
+  if(profileError){  
+    document.getElementById("authStatus").innerText =  
+      "❌ " + profileError.message;  
+    return;  
+  }  
+  
+  document.getElementById("authStatus").innerText =  
+    "✅ Аккаунт создан!";  
+  
+  updateAccountButton(username);  
+}  
+  
+async function loginAccount(){  
+  
+  const username = document.getElementById("authNick").value.trim();  
+  const password = document.getElementById("authPassword").value;  
+  
+  if(!username || !password){  
+    document.getElementById("authStatus").innerText =  
+      "❌ Введи ник и пароль";  
+    return;  
+  }  
+  
+  document.getElementById("authStatus").innerText =  
+    "⏳ Вход...";  
+  
+  const { data, error } = await sb.auth.signInWithPassword({  
+    email: fakeEmail(username),  
+    password: password  
+  });  
+  
+  if(error){  
+    document.getElementById("authStatus").innerText =  
+      "❌ Неверный ник или пароль";  
+    return;  
+  }  
+  
+  updateAccountButton(username);  
+  document.getElementById("authStatus").innerText =  
+    "✅ Вход выполнен!";  
+}  
+  
+function updateAccountButton(username){  
+  
+  document.getElementById("accountBox").innerHTML = `  
+    <button  
+      class="btn"  
+      style="max-width:220px;margin:0"  
+      onclick="openProfile()">  
+      👤 ${username}  
+    </button>  
+  
+    <button  
+      class="btn"  
+      style="max-width:120px;margin-left:8px"  
+      onclick="logoutAccount()">  
+      Выйти  
+    </button>  
+  `;  
+}  
+  
+async function openProfile(){  
+  
+  const { data: { user } } = await sb.auth.getUser();  
+  
+  if(!user){  
+    openAuth();  
+    return;  
+  }  
+  
+  document.getElementById("profilePopup").style.display = "flex";  
+  
+  document.getElementById("profileUsername").innerText = "Загрузка...";  
+  document.getElementById("profileId").innerText = "—";  
+  document.getElementById("profileDate").innerText = "—";  
+  document.getElementById("profileBalance").innerText = "0 грн";
+  document.getElementById("profileOrders").innerText = "Загрузка...";
+
+  const { data: profile, error: profileError } = await sb
+    .from("TOXI_YT")
+    .select("username, profile_id, created_at, balance")
+    .eq("id", user.id)
+    .single();
+
+  if(profileError){
+    console.error(profileError);
+    document.getElementById("profileUsername").innerText = "Ошибка";
+    document.getElementById("profileOrders").innerText = "Не удалось загрузить профиль";
+    return;
+  }
+
+  document.getElementById("profileUsername").innerText =
+    profile.username;
+
+  document.getElementById("profileId").innerText =
+    profile.profile_id || "—";
+
+  document.getElementById("profileDate").innerText =
+    new Date(profile.created_at).toLocaleDateString("ru-RU");
+
+document.getElementById("profileBalance").innerText =
+  (profile.balance || 0) + " грн";
+  
+  const { data: orders, error: ordersError } = await sb
+    .from("orders")
+    .select("id, items, total, status, created_at")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending:false });
+
+  const ordersBox = document.getElementById("profileOrders");
+
+  if(ordersError){
+    ordersBox.innerText = "Не удалось загрузить историю";
+  }else if(!orders || orders.length === 0){
+    ordersBox.innerText = "Покупок пока нет";
+  }else{
+
+    ordersBox.innerHTML = orders.map(order => {
+
+      const date = new Date(order.created_at)
+        .toLocaleString("ru-RU");
+
+      return `
+        <div style="
+          padding:9px 0;
+          border-bottom:1px solid #293657;
+        ">
+          🛒 ${order.items.replace(/\n/g,"<br>")}
+          <br>
+          💰 <b style="color:#00ffb3">
+            ${order.total} грн
+          </b>
+          <br>
+          📌 ${order.status}
+          <br>
+          📅 ${date}
+        </div>
+      `;
+
+    }).join("");
+  }
 }
 
-function searchItems(){
-let v=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
+async function activateProfilePromo(){
+
+  const input = document.getElementById("profilePromoCode");
+  const status = document.getElementById("profilePromoStatus");
+
+  const code = input.value.trim();
+
+  if(!code){
+    status.style.color = "#ff5555";
+    status.innerText = "❌ Введите промокод";
+    return;
+  }
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  if(!user){
+    status.style.color = "#ff5555";
+    status.innerText = "❌ Сначала войдите в аккаунт";
+    return;
+  }
+
+  status.style.color = "#aaa";
+  status.innerText = "⏳ Проверяем промокод...";
+
+  const { data, error } = await sb.rpc("redeem_promo", {
+    p_code: code
+  });
+
+  if(error){
+    console.error("Ошибка промокода:", error);
+
+    status.style.color = "#ff5555";
+    status.innerText = "❌ " + error.message;
+    return;
+  }
+
+  if(!data || !data.success){
+    status.style.color = "#ff5555";
+    status.innerText =
+      "❌ " + (data?.message || "Промокод недействителен");
+    return;
+  }
+
+  // Промокод на баланс
+  if(data.type === "balance"){
+
+    status.style.color = "#00ffb3";
+    status.innerText =
+      "💰 Баланс пополнен на " + data.value + " грн";
+
+    const { data: profile } = await sb
+      .from("TOXI_YT")
+      .select("balance")
+      .eq("id", user.id)
+      .single();
+
+    if(profile){
+      document.getElementById("profileBalance").innerText =
+        (profile.balance || 0) + " грн";
+    }
+
+    return;
+  }
+
+  // Промокод на предмет
+  if(data.type === "item"){
+
+    const { data: profile } = await sb
+      .from("TOXI_YT")
+      .select("username")
+      .eq("id", user.id)
+      .single();
+
+    const username = profile?.username || "Не указан";
+
+    const text =
+      "🎁 Промокод активирован\n\n" +
+      "👤 Ник: " + username + "\n" +
+      "📦 Предмет: " + data.item + "\n" +
+      "🎟 Промокод: " + code + "\n\n" +
+      "Ожидаю получение предмета.";
+
+    status.style.color = "#00ffb3";
+    status.innerText =
+      "✅ Промокод активирован! Открываем Telegram...";
+
+    const tgUrl =
+      "https://t.me/TOXI_YT?text=" +
+      encodeURIComponent(text);
+
+    setTimeout(() => {
+      window.open(tgUrl, "_blank");
+    }, 500);
+
+    return;
+  }
+
+}
+  
+function closeProfile(){
+
+  document.getElementById("profilePopup").style.display = "none";
+
+}
+
+async function logoutAccount(){
+
+  await sb.auth.signOut();
+
+  document.getElementById("accountBox").innerHTML = `
+    <button
+      class="btn"
+      style="max-width:220px;margin:0"
+      onclick="openAuth()">
+      👤 Войти / Регистрация
+    </button>
+  `;
+
+}
+
+function restoreSession(){
+
+  sb.auth.getSession().then(({data}) => {
+
+    if(data.session){
+
+      const username =
+        data.session.user.user_metadata?.username;
+
+      if(username){
+        updateAccountButton(username);
+      }
+
+    }
+
+  });
+
+}
+
+function openTopup(){
+
+  sb.auth.getUser().then(async ({data}) => {
+
+    if(!data.user){
+
+      alert("Сначала войдите в аккаунт");
+      return;
+
+    }
+
+    const { data: profile, error } = await sb
+      .from("TOXI_YT")
+      .select("profile_id")
+      .eq("id", data.user.id)
+      .single();
+
+    if(error || !profile){
+
+      console.error(error);
+      alert("Не удалось загрузить ID профиля");
+      return;
+
+    }
+
+    document.getElementById("topupProfileId").innerText =
+      profile.profile_id || "—";
+
+    document.getElementById("topupAmount").value = "";
+
+    document.getElementById("topupPopup").style.display = "flex";
+
+  });
+
+}
+
+function closeTopup(){
+
+  document.getElementById("topupPopup").style.display = "none";
+
+}
+
+async function createTopup(){
+
+  const amount = parseFloat(
+    document.getElementById("topupAmount").value
+  );
+
+  if(!amount || amount < 5){
+
+    alert("❌ Минимальная сумма пополнения — 5 грн");
+    return;
+
+  }
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  if(!user){
+
+    alert("Сначала войдите в аккаунт");
+    return;
+
+  }
+
+  const { error } = await sb
+    .from("topups")
+    .insert({
+      user_id: user.id,
+      amount: amount
+    });
+
+  if(error){
+
+    console.error("Ошибка создания заявки:", error);
+
+    alert("❌ Не удалось создать заявку");
+    return;
+
+  }
+
+  alert(
+    "✅ Заявка создана!\n\n" +
+    "Сумма: " + amount.toFixed(2) + " грн\n" +
+    "После проверки баланс будет пополнен."
+  );
+
+  closeTopup();
+
+}
+  
+restoreSession();
+render();
+
+
+
+  
+async function checkAdmin(){
+
+  const { data:{ user } } = await sb.auth.getUser();
+
+  const btn = document.getElementById("adminButton");
+
+  if(!btn) return;
+
+  if(user && user.id === ADMIN_ID){
+
+    btn.style.display = "block";
+
+  }else{
+
+    btn.style.display = "none";
+
+  }
+
+}
+
+async function openAdmin(){
+
+  const { data:{ user } } = await sb.auth.getUser();
+
+  if(!user || user.id !== ADMIN_ID){
+
+    alert("Доступ запрещён");
+
+    return;
+
+  }
+
+  document.getElementById("adminPopup").style.display = "flex";
+
+  loadAdminTopups();
+
+}
+
+function closeAdmin(){
+
+  document.getElementById("adminPopup").style.display = "none";
+
+}
+
+async function loadAdminTopups(){
+
+  const box = document.getElementById("adminTopups");
+
+  box.innerHTML = "Загрузка...";
+
+  const { data:{ user } } = await sb.auth.getUser();
+
+  if(!user || user.id !== ADMIN_ID){
+
+    box.innerHTML = "❌ Доступ запрещён";
+
+    return;
+
+  }
+
+  const { data, error } = await sb
+    .from("topups")
+    .select("*")
+    .order("id", { ascending:false });
+
+  if(error){
+
+    console.error(error);
+
+    box.innerHTML =
+      "❌ Ошибка загрузки заявок:<br>" +
+      error.message;
+
+    return;
+
+  }
+
+  if(!data || data.length === 0){
+
+    box.innerHTML = `
+      <div style="
+        padding:15px;
+        text-align:center;
+        color:#aaa;
+      ">
+        Заявок пока нет
+      </div>
+    `;
+
+    return;
+
+  }
+
+  let html = "";
+
+  data.forEach(topup => {
+
+    let status = topup.status || "Ожидает";
+
+    let buttons = "";
+
+    if(status === "Ожидает"){
+
+      buttons = `
+        <button
+          class="order-btn"
+          onclick="confirmTopup(${topup.id})">
+          ✅ Подтвердить
+        </button>
+
+        <button
+          class="btn"
+          onclick="rejectTopup(${topup.id})">
+          ❌ Отклонить
+        </button>
+      `;
+
+    }
+
+    html += `
+      <div style="
+        background:#0a0d16;
+        border:1px solid #293657;
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:10px;
+      ">
+
+        <div>🔢 Заявка: <b>#${topup.id}</b></div>
+
+        <div>👤 User ID:</div>
+
+        <div style="
+          color:#00ffb3;
+          font-size:12px;
+          word-break:break-all;
+          margin:4px 0 8px;
+        ">
+          ${topup.user_id}
+        </div>
+
+        <div>
+          💰 Сумма:
+          <b style="color:#00ffb3">
+            ${topup.amount} грн
+          </b>
+        </div>
+
+        <div>
+          📌 Статус:
+          <b>${status}</b>
+        </div>
+
+        ${buttons}
+
+      </div>
+    `;
+
+  });
+
+  box.innerHTML = html;
+
+}
+
+async function confirmTopup(id){
+
+  if(!confirm("Подтвердить пополнение #" + id + "?")){
+
+    return;
+
+  }
+
+  const { data:{ user } } = await sb.auth.getUser();
+
+  if(!user || user.id !== ADMIN_ID){
+
+    alert("Доступ запрещён");
+
+    return;
+
+  }
+
+  const { data, error } = await sb.rpc(
+    "confirm_topup",
+    {
+      target_topup_id:id
+    }
+  );
+
+  if(error){
+
+    console.error(error);
+
+    alert("Ошибка: " + error.message);
+
+    return;
+
+  }
+
+  alert(
+    "✅ Пополнение подтверждено!\n" +
+    "Новый баланс: " + data + " грн"
+  );
+
+  loadAdminTopups();
+
+}
+
+async function rejectTopup(id){
+
+  if(!confirm("Отклонить заявку #" + id + "?")){
+
+    return;
+
+  }
+
+  const { data:{ user } } = await sb.auth.getUser();
+
+  if(!user || user.id !== ADMIN_ID){
+
+    alert("Доступ запрещён");
+
+    return;
+
+  }
+
+  const { error } = await sb
+    .from("topups")
+    .update({
+      status:"Отклонено"
+    })
+    .eq("id",id)
+    .eq("status","Ожидает");
+
+  if(error){
+
+    console.error(error);
+
+    alert("Ошибка: " + error.message);
+
+    return;
+
+  }
+
+  alert("❌ Заявка отклонена");
+
+  loadAdminTopups();
+
+}
+
+
+  
+sb.auth.onAuthStateChange((event, session) => {
+
+  const btn = document.getElementById("adminButton");
+
+  if(!btn) return;
+
+  if(session && session.user && session.user.id === ADMIN_ID){
+    btn.style.display = "block";
+  }else{
+    btn.style.display = "none";
+  }
+
 });
-}
 
-function openCart(){document.getElementById("cartPopup").style.display="flex";}
-function closeCart(){document.getElementById("cartPopup").style.display="none";}
-function openOrder(){document.getElementById("orderPopup").style.display="flex";}
-function closeOrder(){document.getElementById("orderPopup").style.display="none";}
-
-/* FIX TELEGRAM */
-function sendOrder(){
-let nick=document.getElementById("nick").value;
-if(!nick){alert("Введите ник");return;}
-
-let text="🛒 Заказ\n👤 Ник: "+nick+"\n\n";
-
-if(quickItem){
-text+="• "+quickItem;
-quickItem=null;
-}else{
-cart.forEach(i=>text+="• "+i+"\n");
-text+="\n💰 Итого: "+total+" грн";
-}
-
-window.open("https://t.me/TOXI_YT?text="+encodeURIComponent(text),"_blank");
-}
-
-render();
 </script>
+
 
 </body>
 </html>
