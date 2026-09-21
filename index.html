@@ -502,94 +502,184 @@ header{font-size:17px}
 <p id="authStatus" style="color:#aaa;font-size:13px;text-align:center"></p>
 
   </div>  
-</div>  <div class="popup" id="profilePopup">  
-  <div class="popup-box">  <div style="text-align:center">  
+</div> 
 
-  <div style="  
-    width:82px;  
-    height:82px;  
-    margin:0 auto 12px;  
-    border-radius:50%;  
-    background:linear-gradient(135deg,#ffd000,#ff6500);  
-    display:flex;  
-    align-items:center;  
-    justify-content:center;  
-    font-size:40px;  
-    box-shadow:0 0 25px rgba(255,157,0,.25);  
-  ">👤</div>  
+<div class="popup" id="promoSuccessPopup">
+  <div class="popup-box">
 
-  <h3 style="margin-bottom:4px">Профиль</h3>  
+    <h3>🎁 Промокод активирован!</h3>
 
-  <div id="profileUsername"  
-       style="color:#00ffb3;font-size:18px;font-weight:bold">  
-    Загрузка...  
-  </div>  
+    <p id="promoSuccessText"
+       style="color:#aaa;font-size:14px;text-align:center;line-height:1.6;">
+      Предмет готов к получению.
+    </p>
 
-</div>  
+    <button
+  id="promoGetButton"
+  class="order-btn"
+  onclick="this.style.display='none'; openTelegramOrder()"
+>
+  🎁 Забрать
+    </button>
 
-<div style="  
-  margin-top:18px;  
-  background:#0a0d16;  
-  border:1px solid #293657;  
-  border-radius:12px;  
-  padding:14px;  
-  line-height:1.9;  
-">  
+    <button class="btn"
+      onclick="document.getElementById('promoSuccessPopup').style.display='none'">
+      Закрыть
+    </button>
 
-  <div>🔢 ID: <b id="profileId">—</b></div>  
-  <div>📅 Регистрация: <b id="profileDate">—</b></div>  
-  <div>💰 Баланс: <b id="profileBalance">0 грн</b></div>  
-  
-<button class="order-btn" onclick="openTopup()">💰 Пополнить баланс</button>
-
-<div style="margin-top:14px">
-  <input
-    class="input"
-    id="profilePromoCode"
-    placeholder="Введите промокод"
-  >
-
-  <button
-    class="order-btn"
-    onclick="activateProfilePromo()">
-    🎟 Активировать промокод
-  </button>
-
-  <div
-    id="profilePromoStatus"
-    style="
-      margin-top:8px;
-      font-size:13px;
-      text-align:center;
-      color:#aaa;
-    ">
   </div>
 </div>
   
-</div>  
+<div class="popup" id="profilePopup">
+  <div class="popup-box">
 
-<h4 style="margin-bottom:8px">🛒 История покупок</h4>  
+    <div style="text-align:center">
 
-<div id="profileOrders"  
-     style="  
-     max-height:180px;  
-     overflow-y:auto;  
-     color:#aaa;  
-     font-size:13px;  
-     line-height:1.7;  
-     ">  
-  Покупок пока нет  
-</div>  
+      <div style="
+        width:82px;
+        height:82px;
+        margin:0 auto 12px;
+        border-radius:50%;
+        background:linear-gradient(135deg,#ffd000,#ff6500);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+        box-shadow:0 0 25px rgba(255,157,0,.25);
+      ">👤</div>
 
-<button class="btn" onclick="closeProfile()">  
-  Закрыть  
-</button>
+      <h3 style="margin-bottom:4px">Профиль</h3>
 
-  </div>  
-</div> 
-  </div>  
-</div>  
+      <div
+        id="profileUsername"
+        style="color:#00ffb3;font-size:18px;font-weight:bold"
+      >
+        Загрузка...
+      </div>
 
+    </div>
+
+    <div style="
+      margin-top:18px;
+      background:#0a0d16;
+      border:1px solid #293657;
+      border-radius:12px;
+      padding:14px;
+      line-height:1.9;
+    ">
+
+      <div>🔢 ID: <b id="profileId">—</b></div>
+
+      <div>
+        📅 Регистрация:
+        <b id="profileDate">—</b>
+      </div>
+
+      <div>
+        💰 Баланс:
+        <b id="profileBalance">0 грн</b>
+      </div>
+
+      <button
+        class="order-btn"
+        onclick="openTopup()"
+      >
+        💰 Пополнить баланс
+      </button>
+
+      <div style="margin-top:14px">
+
+        <input
+          class="input"
+          id="profilePromoCode"
+          placeholder="Введите промокод"
+        >
+
+        <button
+          class="order-btn"
+          onclick="activateProfilePromo()"
+        >
+          🎟 Активировать промокод
+        </button>
+
+        <div
+          id="profilePromoStatus"
+          style="
+            margin-top:8px;
+            font-size:13px;
+            text-align:center;
+            color:#aaa;
+          "
+        ></div>
+
+        <div
+          id="promoRewardBox"
+          style="
+            display:none;
+            margin-top:12px;
+            padding:14px;
+            background:#0a0d16;
+            border:1px solid #00ffb3;
+            border-radius:12px;
+            text-align:center;
+          "
+        >
+
+          <div style="font-size:18px;font-weight:bold;">
+            🎁 Промокод активирован!
+          </div>
+
+          <div
+            id="promoRewardText"
+            style="
+              color:#aaa;
+              font-size:14px;
+              margin:8px 0 12px;
+            "
+          >
+            Предмет готов к получению.
+          </div>
+
+          <button
+            class="order-btn"
+            onclick="openTelegramOrder()"
+          >
+            🎁 Забрать
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <h4 style="margin-bottom:8px">
+      🛒 История покупок
+    </h4>
+
+    <div
+      id="profileOrders"
+      style="
+        max-height:180px;
+        overflow-y:auto;
+        color:#aaa;
+        font-size:13px;
+        line-height:1.7;
+      "
+    >
+      Покупок пока нет
+    </div>
+
+    <button
+      class="btn"
+      onclick="closeProfile()"
+    >
+      Закрыть
+    </button>
+
+  </div>
+</div>
+  
 <div class="popup" id="topupPopup">
   <div class="popup-box">
 
@@ -673,6 +763,38 @@ header{font-size:17px}
 
   </div>
 </div>
+
+  <div class="popup" id="successPopup">
+  <div class="popup-box">
+
+    <h3 id="successTitle">✅ Покупка успешна!</h3>
+
+    <p
+      id="successText"
+      style="
+        color:#aaa;
+        font-size:14px;
+        text-align:center;
+        line-height:1.6;
+      ">
+      Заказ успешно оплачен.
+    </p>
+
+    <button
+      class="order-btn"
+      id="telegramOrderBtn"
+      onclick="openTelegramOrder()">
+      📦 Получить заказ
+    </button>
+
+    <button
+      class="btn"
+      onclick="closeSuccessPopup()">
+      Закрыть
+    </button>
+
+  </div>
+  </div>
   
 <script>
 const SUPABASE_URL = "https://tujtvtxkqjxwcfryilwe.supabase.co";
@@ -690,6 +812,24 @@ const ADMIN_ID = "8a3ed0a7-a1b7-4abf-a95e-c694fbd3cdf4";
 let cart = JSON.parse(localStorage.getItem("cart")) || [];  
 let total = parseFloat(localStorage.getItem("total")) || 0;  
 let quickItem = null;  
+
+let pendingTelegramUrl = "";
+
+function openTelegramOrder(){
+
+  if(!pendingTelegramUrl){
+    return;
+  }
+
+  window.location.href = pendingTelegramUrl;
+}
+
+function closeSuccessPopup(){
+
+  document.getElementById("successPopup").style.display = "none";
+
+  pendingTelegramUrl = "";
+}
   
 function save(){  
 localStorage.setItem("cart",JSON.stringify(cart));  
@@ -973,12 +1113,19 @@ const { data: newBalance, error: paymentError } = await sb
   }
 
   // Показываем новый баланс
-  alert(
-    "✅ Оплата успешно проведена!\n\n" +
-    "💰 Списано: " + orderTotal + " грн\n" +
-    "💳 Новый баланс: " + newBalance + " грн\n\n" +
-    "Сейчас откроется Telegram для оформления заказа."
-  );
+  pendingTelegramUrl =
+  "https://t.me/TOXI_YT?text=" +
+  encodeURIComponent(text);
+
+document.getElementById("successTitle").innerText =
+  "✅ Покупка успешна!";
+
+document.getElementById("successText").innerText =
+  "💰 Списано: " + orderTotal + " грн\n" +
+  "💳 Новый баланс: " + newBalance + " грн\n\n" +
+  "Нажмите кнопку ниже, чтобы получить заказ.";
+
+document.getElementById("successPopup").style.display = "flex";
 
   // Очищаем корзину только после успешной оплаты
   if(!quickItem){
@@ -991,9 +1138,13 @@ const { data: newBalance, error: paymentError } = await sb
 
   }
 
-const tgUrl = "https://t.me/TOXI_YT?text=" + encodeURIComponent(text);
+const tgUrl =
+  "https://t.me/TOXI_YT?text=" +
+  encodeURIComponent(text);
 
-window.open(tgUrl, "_blank");
+// Сохраняем заказ на случай проблем с переходом
+localStorage.setItem("pendingTelegramOrder", tgUrl);
+
   
   quickItem = null;
 
@@ -1298,17 +1449,18 @@ async function activateProfilePromo(){
       "🎟 Промокод: " + code + "\n\n" +
       "Ожидаю получение предмета.";
 
-    status.style.color = "#00ffb3";
-    status.innerText =
-      "✅ Промокод активирован! Открываем Telegram...";
-
-    const tgUrl =
+    pendingTelegramUrl =
       "https://t.me/TOXI_YT?text=" +
       encodeURIComponent(text);
 
-    setTimeout(() => {
-      window.open(tgUrl, "_blank");
-    }, 500);
+    status.style.color = "#00ffb3";
+    status.innerText =
+      "✅ Промокод активирован! Нажмите «🎁 Забрать».";
+
+    document.getElementById("promoRewardText").innerText =
+  "📦 Предмет: " + data.item;
+
+document.getElementById("promoRewardBox").style.display = "block";
 
     return;
   }
